@@ -1,0 +1,65 @@
+@media print {
+  /* 基础样式调整 */
+  @page {
+    margin: 2cm;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* 隐藏不需要打印的元素 */
+  nav,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  /* 调整主容器样式 */
+  main {
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* 调整文本颜色 */
+  h1,
+  h2,
+  h3,
+  p,
+  li,
+  span {
+    color: black !important;
+  }
+
+  /* 调整链接样式 */
+  a {
+    text-decoration: none !important;
+    color: black !important;
+  }
+  a[href]:after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+  }
+
+  /* 调整卡片样式 */
+  .bg-white\/5,
+  .backdrop-blur-sm {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid #eee !important;
+  }
+
+  /* 调整间距 */
+  section {
+    page-break-inside: avoid;
+    margin-bottom: 1cm !important;
+  }
+
+  /* 优化图标显示 */
+  svg {
+    fill: black !important;
+    stroke: black !important;
+  }
+}
