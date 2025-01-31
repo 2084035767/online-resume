@@ -93,16 +93,14 @@ export const projects: Project[] = [
 export const personalInfo: PersonalInfo = {
   name: '张三',
   title: '高级前端工程师',
-  email: 'example@email.com',
+  email: '2087525252@qq.com',
   phone: '13800138000',
-  location: '深圳',
+  location: '成都',
   experience: '3年工作经验',
-
   github: 'https://github.com/yourusername',
   introduction:
     '热衷于前端技术，擅长 React 和 TypeScript，对性能优化和工程化有深入研究。具有良好的团队协作能力和技术攻关能力，曾主导多个大型项目的开发。',
-  avatar:
-    'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&h=500&fit=crop',
+  avatar: '/images/avatar.jpg',
   gitee: 'https://gitee.com/yourusername',
   qq: '123456789',
   wechat: 'your_wechat_id',

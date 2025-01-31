@@ -24,23 +24,22 @@ const Skills = lazy(importSkills)
 const Education = lazy(importEducation)
 const Projects = lazy(importProjects)
 const GithubProjects = lazy(importGithubProjects)
-const Experience = lazy(importExperience)
-const ProjectTimeline = lazy(importProjectTimeline)
-const Interests = lazy(importInterests)
-const Certificates = lazy(importCertificates)
-const Languages = lazy(importLanguages)
+// const Experience = lazy(importExperience)
+// const ProjectTimeline = lazy(importProjectTimeline)
+// const Interests = lazy(importInterests)
+// const Certificates = lazy(importCertificates)
+// const Languages = lazy(importLanguages)
 
 import {
-  certificates,
+  // certificates,
+  // interests,
+  // languages,
   education,
-  experiences,
+  // experiences,
   githubProjects,
-  interests,
-  languages,
   personalInfo,
   projects,
   skills,
-  timelineProjects,
 } from '@/data'
 
 // 加载占位组件
@@ -109,19 +108,19 @@ const App: FC = () => {
             </section>
           </Suspense>
 
-          <Suspense fallback={<LoadingFallback />}>
+          {/* <Suspense fallback={<LoadingFallback />}>
             <section id="experience">
               <Experience experience={experiences} />
             </section>
-          </Suspense>
+          </Suspense> */}
 
-          <Suspense fallback={<LoadingFallback />}>
+          {/* <Suspense fallback={<LoadingFallback />}>
             <section id="projectTimeline">
               <ProjectTimeline projects={timelineProjects} />
             </section>
-          </Suspense>
+          </Suspense> */}
 
-          <Suspense fallback={<LoadingFallback />}>
+          {/* <Suspense fallback={<LoadingFallback />}>
             <section id="interests">
               <Interests interests={interests} />
             </section>
@@ -137,7 +136,7 @@ const App: FC = () => {
             <section id="languages">
               <Languages languages={languages} />
             </section>
-          </Suspense>
+          </Suspense> */}
         </div>
       </motion.div>
     </main>
