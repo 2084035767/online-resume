@@ -52,9 +52,9 @@ const LoadingFallback = () => (
 const App: FC = () => {
   // 使用预加载 Hook
   usePreload('personal', importPersonalInfo, 0)
-  usePreload('skills', importSkills, 1000)
-  usePreload('education', importEducation, 2000)
-  usePreload('projects', importProjects, 3000)
+  usePreload('skills', importSkills, 100)
+  usePreload('education', importEducation, 200)
+  usePreload('projects', importProjects, 300)
   // usePreload('github', importGithubProjects, 4000)
   // usePreload('experience', importExperience, 5000)
   // usePreload('projectTimeline', importProjectTimeline, 6000)
