@@ -9,21 +9,21 @@ const importPersonalInfo = () =>
 const importSkills = () => import('@/components/Skills/Skills')
 const importEducation = () => import('@/components/Education/Education')
 const importProjects = () => import('@/components/Projects/Projects')
-const importGithubProjects = () =>
-  import('@/components/GithubProjects/GithubProjects')
-const importExperience = () => import('@/components/Experience/Experience')
-const importProjectTimeline = () =>
-  import('@/components/ProjectTimeline/ProjectTimeline')
-const importInterests = () => import('@/components/Interests/Interests')
-const importCertificates = () =>
-  import('@/components/Certificates/Certificates')
-const importLanguages = () => import('@/components/Languages/Languages')
+// const importGithubProjects = () =>
+//   import('@/components/GithubProjects/GithubProjects')
+// const importExperience = () => import('@/components/Experience/Experience')
+// const importProjectTimeline = () =>
+//   import('@/components/ProjectTimeline/ProjectTimeline')
+// const importInterests = () => import('@/components/Interests/Interests')
+// const importCertificates = () =>
+//   import('@/components/Certificates/Certificates')
+// const importLanguages = () => import('@/components/Languages/Languages')
 // 懒加载组件
 const PersonalInfo = lazy(importPersonalInfo)
 const Skills = lazy(importSkills)
 const Education = lazy(importEducation)
 const Projects = lazy(importProjects)
-const GithubProjects = lazy(importGithubProjects)
+// const GithubProjects = lazy(importGithubProjects)
 // const Experience = lazy(importExperience)
 // const ProjectTimeline = lazy(importProjectTimeline)
 // const Interests = lazy(importInterests)
@@ -36,7 +36,7 @@ import {
   // languages,
   education,
   // experiences,
-  githubProjects,
+  // githubProjects,
   personalInfo,
   projects,
   skills,
@@ -55,12 +55,12 @@ const App: FC = () => {
   usePreload('skills', importSkills, 1000)
   usePreload('education', importEducation, 2000)
   usePreload('projects', importProjects, 3000)
-  usePreload('github', importGithubProjects, 4000)
-  usePreload('experience', importExperience, 5000)
-  usePreload('projectTimeline', importProjectTimeline, 6000)
-  usePreload('interests', importInterests, 7000)
-  usePreload('certificates', importCertificates, 8000)
-  usePreload('languages', importLanguages, 9000)
+  // usePreload('github', importGithubProjects, 4000)
+  // usePreload('experience', importExperience, 5000)
+  // usePreload('projectTimeline', importProjectTimeline, 6000)
+  // usePreload('interests', importInterests, 7000)
+  // usePreload('certificates', importCertificates, 8000)
+  // usePreload('languages', importLanguages, 9000)
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#242826] to-[#374743] text-white p-8 relative overflow-hidden scroll-smooth">
       <button
@@ -102,11 +102,12 @@ const App: FC = () => {
             </section>
           </Suspense>
 
-          <Suspense fallback={<LoadingFallback />}>
+          {/*<Suspense fallback={<LoadingFallback />}>
             <section id="github">
               <GithubProjects projects={githubProjects} />
             </section>
           </Suspense>
+          */}
 
           {/* <Suspense fallback={<LoadingFallback />}>
             <section id="experience">
