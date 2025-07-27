@@ -1,46 +1,32 @@
-import { usePreload } from '@/hooks/usePreload'
 import { staggerContainer } from '@/utils/animations'
 import { motion } from 'framer-motion'
-import { FC, lazy, Suspense } from 'react'
-
-// 组件导入函数
-const importPersonalInfo = () =>
-  import('@/components/PersonalInfo/PersonalInfo')
-const importSkills = () => import('@/components/Skills/Skills')
-const importEducation = () => import('@/components/Education/Education')
-const importProjects = () => import('@/components/Projects/Projects')
-// const importGithubProjects = () =>
-//   import('@/components/GithubProjects/GithubProjects')
-// const importExperience = () => import('@/components/Experience/Experience')
-// const importProjectTimeline = () =>
-//   import('@/components/ProjectTimeline/ProjectTimeline')
-// const importInterests = () => import('@/components/Interests/Interests')
-// const importCertificates = () =>
-//   import('@/components/Certificates/Certificates')
-// const importLanguages = () => import('@/components/Languages/Languages')
-// 懒加载组件
-const PersonalInfo = lazy(importPersonalInfo)
-const Skills = lazy(importSkills)
-const Education = lazy(importEducation)
-const Projects = lazy(importProjects)
-// const GithubProjects = lazy(importGithubProjects)
-// const Experience = lazy(importExperience)
-// const ProjectTimeline = lazy(importProjectTimeline)
-// const Interests = lazy(importInterests)
-// const Certificates = lazy(importCertificates)
-// const Languages = lazy(importLanguages)
+import { FC, Suspense } from 'react'
 
 import {
-  // certificates,
-  // interests,
-  // languages,
+  certificates,
   education,
-  // experiences,
-  // githubProjects,
+  experiences,
+  githubProjects,
+  interests,
+  languages,
   personalInfo,
   projects,
   skills,
+  timelineProjects,
 } from '@/data'
+
+import {
+  Certificates,
+  Education,
+  Experience,
+  GithubProjects,
+  Interests,
+  Languages,
+  PersonalInfo,
+  Projects,
+  ProjectTimeline,
+  Skills,
+} from '@/components'
 
 // 加载占位组件
 const LoadingFallback = () => (
@@ -51,10 +37,10 @@ const LoadingFallback = () => (
 
 const App: FC = () => {
   // 使用预加载 Hook
-  usePreload('personal', importPersonalInfo, 0)
-  usePreload('skills', importSkills, 100)
-  usePreload('education', importEducation, 200)
-  usePreload('projects', importProjects, 300)
+  // usePreload('personal', importPersonalInfo, 0)
+  // usePreload('skills', importSkills, 100)
+  // usePreload('education', importEducation, 200)
+  // usePreload('projects', importProjects, 300)
   // usePreload('github', importGithubProjects, 4000)
   // usePreload('experience', importExperience, 5000)
   // usePreload('projectTimeline', importProjectTimeline, 6000)
@@ -102,26 +88,25 @@ const App: FC = () => {
             </section>
           </Suspense>
 
-          {/*<Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<LoadingFallback />}>
             <section id="github">
               <GithubProjects projects={githubProjects} />
             </section>
           </Suspense>
-          */}
 
-          {/* <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<LoadingFallback />}>
             <section id="experience">
               <Experience experience={experiences} />
             </section>
-          </Suspense> */}
+          </Suspense>
 
-          {/* <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<LoadingFallback />}>
             <section id="projectTimeline">
               <ProjectTimeline projects={timelineProjects} />
             </section>
-          </Suspense> */}
+          </Suspense>
 
-          {/* <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<LoadingFallback />}>
             <section id="interests">
               <Interests interests={interests} />
             </section>
@@ -137,7 +122,7 @@ const App: FC = () => {
             <section id="languages">
               <Languages languages={languages} />
             </section>
-          </Suspense> */}
+          </Suspense>
         </div>
       </motion.div>
     </main>
