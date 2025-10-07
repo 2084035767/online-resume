@@ -7,7 +7,7 @@
 
 ## 🎯 项目亮点
 
-- **现代化技术栈**：React 18 + Vite + TypeScript + Tailwind CSS + shadcn/ui。
+- **现代化技术栈**：React 19 + Vite + TypeScript + Tailwind CSS。
 
 ---
 
@@ -15,10 +15,9 @@
 
 | 类别     | 选型                                            |
 | -------- | ----------------------------------------------- |
-| 框架     | React 18（函数组件 + Hooks）                    |
-| 构建工具 | Vite 5（HMR 快、打包小）                        |
+| 框架     | React 19（函数组件 + Hooks）                    |
+| 构建工具 | Vite 6（HMR 快、打包小）                        |
 | 语言     | TypeScript（严格模式）                          |
-| UI 库    | shadcn/ui（Radix UI + TailwindCSS，可拷贝即用） |
 
 ---
 
@@ -43,16 +42,10 @@ pnpm dev
 
 ## 🎉 未来计划
 
-- [ ] 优化 README 文档
-- [ ] 优化加载性能
 - [ ] 增加更多交互动画
 - [ ] 支持多语言切换
-- [ ] 添加简历下载功能
 - [ ] 支持　PWA
 - [ ] 支持暗黑模式切换
-- [ ] 优化移动端体验
-- [ ] 支持自定义主题
-- [ ] 增加　Astro
 
 ---
 
