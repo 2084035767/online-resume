@@ -1,12 +1,17 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { EducationProps } from '@/type'
 import { fadeInUp } from '@/utils/animations'
 import { motion } from 'framer-motion'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const Education: FC<EducationProps> = ({ education }) => {
+  const { currentColor } = useTheme()
+  const { t } = useTranslation()
+
   return (
     <motion.section className="space-y-6" variants={fadeInUp}>
-      <h2 className="text-2xl font-bold">教育经历</h2>
+      <h2 className="text-2xl font-bold">{t('sections.education')}</h2>
       {education.map((edu, index) => (
         <motion.div
           key={index}
@@ -20,7 +25,7 @@ const Education: FC<EducationProps> = ({ education }) => {
             <h3 className="text-xl font-semibold">{edu.school}</h3>
             <span className="text-gray-400">{edu.period}</span>
           </div>
-          <p className="text-[#42B883]">{edu.degree}</p>
+          <p style={{ color: currentColor }}>{edu.degree}</p>
           <ul className="list-disc list-inside text-gray-300 space-y-1">
             {edu.details.map((detail, i) => (
               <li key={i}>{detail}</li>

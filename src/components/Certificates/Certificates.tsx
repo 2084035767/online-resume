@@ -1,10 +1,14 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { motion } from 'framer-motion'
 import { Award, ExternalLink } from 'lucide-react'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { CertificatesProps } from '@/type'
 
 const Certificates: FC<CertificatesProps> = ({ certificates }) => {
+  const { currentColor } = useTheme()
+  const { t } = useTranslation()
   return (
     <motion.div
       className="space-y-6"
@@ -12,7 +16,7 @@ const Certificates: FC<CertificatesProps> = ({ certificates }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-2xl font-bold">获奖证书</h2>
+      <h2 className="text-2xl font-bold">{t('sections.certificates')}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {certificates.map((cert, index) => (
           <motion.div
@@ -38,8 +42,11 @@ const Certificates: FC<CertificatesProps> = ({ certificates }) => {
             <div className="p-6 space-y-4">
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
-                  <h3 className="text-lg font-semibold text-[#42B883] flex items-center gap-2">
-                    <Award className="w-5 h-5" />
+                  <h3
+                    className="text-lg font-semibold flex items-center gap-2"
+                    style={{ color: currentColor }}
+                  >
+                    <Award className="w-5 h-5" style={{ color: currentColor }} />
                     {cert.title}
                   </h3>
                   <p className="text-sm text-gray-400">
@@ -51,7 +58,8 @@ const Certificates: FC<CertificatesProps> = ({ certificates }) => {
                     href={cert.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#42B883] hover:text-[#42B883]/80 transition-colors"
+                    className="transition-colors hover:opacity-80"
+                    style={{ color: currentColor }}
                   >
                     <ExternalLink className="w-5 h-5" />
                   </a>

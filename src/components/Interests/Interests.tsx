@@ -1,10 +1,13 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { motion } from 'framer-motion'
-
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { InterestsProps } from '@/type'
 
 const Interests: FC<InterestsProps> = ({ interests }) => {
+  const { currentColor } = useTheme()
+  const { t } = useTranslation()
   return (
     <motion.div
       className="space-y-6"
@@ -12,7 +15,7 @@ const Interests: FC<InterestsProps> = ({ interests }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-2xl font-bold">兴趣爱好</h2>
+      <h2 className="text-2xl font-bold">{t('sections.interests')}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {interests.map((interest, index) => {
           const Icon = interest.icon
@@ -36,7 +39,10 @@ const Interests: FC<InterestsProps> = ({ interests }) => {
                 <div className={`${interest.color}`}>
                   <Icon size={24} />
                 </div>
-                <h3 className="text-lg font-semibold text-[#42B883]">
+                <h3
+                  className="text-lg font-semibold"
+                  style={{ color: currentColor }}
+                >
                   {interest.title}
                 </h3>
                 <p className="text-gray-300 text-sm">{interest.description}</p>

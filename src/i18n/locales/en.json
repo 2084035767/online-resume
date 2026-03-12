@@ -1,0 +1,250 @@
+{
+  "app": {
+    "title": "Personal Portfolio",
+    "print": "Print Resume",
+    "downloadPDF": "Download PDF"
+  },
+  "sections": {
+    "personal": "About Me",
+    "skills": "Skills",
+    "education": "Education",
+    "projects": "Projects",
+    "github": "Open Source",
+    "experience": "Experience",
+    "timeline": "Project Timeline",
+    "interests": "Interests",
+    "certificates": "Certificates",
+    "languages": "Languages"
+  },
+  "personal": {
+    "name": "John Zhang",
+    "title": "Senior Frontend Engineer",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "experience": "Experience",
+    "introduction": "Passionate about frontend technology, proficient in React and TypeScript, with deep research in performance optimization and engineering. Possesses strong teamwork and technical problem-solving abilities, having led the development of multiple large-scale projects.",
+    "qq": "QQ",
+    "wechat": "WeChat",
+    "aboutMe": "About Me"
+  },
+  "skills": {
+    "title": "Skills",
+    "frontend": "Frontend Development",
+    "backend": "Backend Development"
+  },
+  "education": {
+    "title": "Education",
+    "school": "Example University",
+    "degree": "Computer Science & Technology · Bachelor",
+    "period": "2016.09 - 2020.06",
+    "details": [
+      "Major courses: Data Structures, Algorithm Analysis, Computer Networks, Operating Systems, Database Systems, etc.",
+      "GPA: 3.8/4.0, top 10% in major ranking",
+      "Awarded Outstanding Graduate honor",
+      "Served as technical leader of ACM Programming Association"
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "techStack": "Tech Stack",
+    "highlights": "Highlights",
+    "viewProject": "View Project",
+    "list": [
+      {
+        "title": "Personal Blog System",
+        "description": "A modern blog system developed with Next.js and TailwindCSS",
+        "highlights": [
+          "Implemented responsive design supporting multi-device adaptation",
+          "Integrated MDX support for rich text editing experience",
+          "Achieved 3k+ PV/month using Vercel automated deployment"
+        ]
+      }
+    ]
+  },
+  "github": {
+    "title": "Open Source",
+    "stars": "Stars",
+    "forks": "Forks",
+    "language": "Language",
+    "lastUpdate": "Last Update",
+    "projects": [
+      {
+        "name": "react-data-visualization",
+        "description": "React-based data visualization component library supporting multiple chart types and custom themes"
+      },
+      {
+        "name": "vue3-admin-template",
+        "description": "Enterprise-level admin dashboard template with permission management and dynamic routing"
+      },
+      {
+        "name": "node-cms-server",
+        "description": "Node.js based content management system backend providing RESTful APIs"
+      }
+    ]
+  },
+  "experience": {
+    "title": "Work Experience",
+    "company": "Company",
+    "position": "Position",
+    "period": "Period",
+    "achievements": "Achievements",
+    "technologies": "Technologies",
+    "list": [
+      {
+        "company": "Example Tech Co., Ltd.",
+        "position": "Senior Frontend Developer",
+        "period": "2021.06 - Present",
+        "achievements": [
+          "Responsible for frontend architecture design and development of core products",
+          "Optimized frontend performance and improved user experience",
+          "Mentored junior developers and organized tech sharing sessions",
+          "Reduced first screen loading time by 50%, increased user retention by 20%"
+        ],
+        "technologies": ["React", "TypeScript", "Next.js", "Tailwind CSS"]
+      },
+      {
+        "company": "Example Network Tech Co.",
+        "position": "Frontend Developer",
+        "period": "2019.07 - 2021.05",
+        "achievements": [
+          "Participated in frontend development of e-commerce platform",
+          "Implemented complex interactive features and data visualization",
+          "Developed and maintained internal component library"
+        ],
+        "technologies": ["Vue.js", "JavaScript", "Less", "Element UI"]
+      }
+    ]
+  },
+  "timeline": {
+    "title": "Project Timeline",
+    "ongoing": "In Progress",
+    "completed": "Completed",
+    "planned": "Planned",
+    "projects": [
+      {
+        "title": "Enterprise Admin Dashboard",
+        "date": "2023.06 - Present",
+        "description": "A modern React + TypeScript admin solution with complete permission management, data visualization, and form designer features.",
+        "tags": ["React", "TypeScript", "Ant Design", "Micro Frontend"],
+        "status": "ongoing"
+      },
+      {
+        "title": "E-commerce Data Analytics Platform",
+        "date": "2023.01 - 2023.05",
+        "description": "Integrates multiple data sources, provides real-time data analysis and visualization to help merchants make better business decisions.",
+        "tags": ["Vue3", "Vite", "ECharts", "WebSocket"],
+        "status": "completed"
+      },
+      {
+        "title": "Cross-platform Mobile App",
+        "date": "2024.01 - Planned",
+        "description": "Planning to develop an iOS and Android mobile app with offline-first data synchronization features.",
+        "tags": ["React Native", "TypeScript", "GraphQL"],
+        "status": "planned"
+      }
+    ]
+  },
+  "interests": {
+    "title": "Interests",
+    "list": [
+      {
+        "title": "Open Source",
+        "description": "Passionate about contributing to open source projects, sharing code on GitHub, and keeping up with latest technology trends."
+      },
+      {
+        "title": "Photography",
+        "description": "Enjoy capturing beautiful moments in life with camera, favoring landscape and street photography."
+      },
+      {
+        "title": "Reading",
+        "description": "Regularly read technical books and tech articles to maintain learning and thinking."
+      },
+      {
+        "title": "Fitness",
+        "description": "Persist in fitness exercises to maintain good physical and mental health."
+      },
+      {
+        "title": "Music",
+        "description": "Enjoy listening to various types of music, occasionally play guitar myself."
+      },
+      {
+        "title": "Travel",
+        "description": "Passionate about exploring new places, experiencing different cultures and scenery."
+      }
+    ]
+  },
+  "certificates": {
+    "title": "Certificates",
+    "issuer": "Issuer",
+    "date": "Date",
+    "viewCertificate": "View Certificate",
+    "list": [
+      {
+        "title": "Full Stack Engineer Certification",
+        "issuer": "Example Online Education Platform",
+        "date": "Dec 2023",
+        "description": "Completed full stack development courses including frontend, backend, and databases, received outstanding graduation certificate."
+      },
+      {
+        "title": "AWS Solutions Architect",
+        "issuer": "Amazon Web Services",
+        "date": "Aug 2023",
+        "description": "Passed AWS certification exam, capable of designing and deploying scalable systems."
+      },
+      {
+        "title": "Google Data Analytics Certificate",
+        "issuer": "Google",
+        "date": "Jun 2023",
+        "description": "Mastered data analysis tools and techniques, capable of data-driven decision making."
+      },
+      {
+        "title": "Best Technology Innovation Award",
+        "issuer": "Example Tech Conference",
+        "date": "Mar 2023",
+        "description": "Developed open source project that made outstanding contributions in technology innovation."
+      }
+    ]
+  },
+  "languages": {
+    "title": "Languages",
+    "level": "Level",
+    "score": "Score",
+    "certificates": "Certificates",
+    "list": [
+      {
+        "name": "English",
+        "level": "Proficient",
+        "score": "CET-6 580",
+        "description": "Able to read English technical documents fluently, participate in English technical discussions, and write technical documentation. Daily communication barrier-free.",
+        "certificates": ["TOEFL iBT 95", "Cambridge Business English Higher"]
+      },
+      {
+        "name": "Japanese",
+        "level": "Good",
+        "score": "N2",
+        "description": "Able to read Japanese technical blogs, watch technical conference videos, and conduct basic technical exchanges.",
+        "certificates": ["JLPT N2"]
+      },
+      {
+        "name": "Mandarin",
+        "level": "Native",
+        "score": "Level 1 Grade A",
+        "description": "Native language with excellent oral expression and writing abilities.",
+        "certificates": ["Mandarin Proficiency Test Level 1 Grade A"]
+      },
+      {
+        "name": "Cantonese",
+        "level": "Good",
+        "description": "Able to conduct daily communication and simple business communication."
+      }
+    ]
+  },
+  "theme": {
+    "accentColor": "Accent Color"
+  },
+  "language": {
+    "zh": "中文",
+    "en": "English"
+  }
+}

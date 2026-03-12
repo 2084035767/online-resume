@@ -1,10 +1,14 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { motion } from 'framer-motion'
 import { Globe2, MessageCircle } from 'lucide-react'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { LanguagesProps } from '@/type'
 
 const Languages: FC<LanguagesProps> = ({ languages }) => {
+  const { currentColor } = useTheme()
+  const { t } = useTranslation()
   return (
     <motion.div
       className="space-y-6"
@@ -13,8 +17,8 @@ const Languages: FC<LanguagesProps> = ({ languages }) => {
       transition={{ duration: 0.5 }}
     >
       <h2 className="text-2xl font-bold flex items-center gap-2">
-        <Globe2 className="text-[#42B883]" />
-        语言能力
+        <Globe2 style={{ color: currentColor }} />
+        {t('sections.languages')}
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -28,14 +32,20 @@ const Languages: FC<LanguagesProps> = ({ languages }) => {
           >
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-lg font-semibold text-[#42B883] flex items-center gap-2">
-                  <MessageCircle className="w-5 h-5" />
+                <h3
+                  className="text-lg font-semibold flex items-center gap-2"
+                  style={{ color: currentColor }}
+                >
+                  <MessageCircle className="w-5 h-5" style={{ color: currentColor }} />
                   {lang.name}
                 </h3>
                 <p className="text-sm text-gray-400">{lang.level}</p>
               </div>
               {lang.score && (
-                <span className="text-lg font-semibold text-[#42B883]">
+                <span
+                  className="text-lg font-semibold"
+                  style={{ color: currentColor }}
+                >
                   {lang.score}
                 </span>
               )}
@@ -45,7 +55,7 @@ const Languages: FC<LanguagesProps> = ({ languages }) => {
 
             {lang.certificates && lang.certificates.length > 0 && (
               <div className="space-y-2">
-                <h4 className="text-sm font-medium text-gray-400">相关证书</h4>
+                <h4 className="text-sm font-medium text-gray-400">{t('languages.certificates')}</h4>
                 <ul className="list-disc list-inside text-sm text-gray-300">
                   {lang.certificates.map((cert, certIndex) => (
                     <li key={certIndex}>{cert}</li>
@@ -57,7 +67,10 @@ const Languages: FC<LanguagesProps> = ({ languages }) => {
             {/* 进度条 */}
             <div className="mt-4 h-1.5 bg-white/10 rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-[#42B883] to-[#42B883]/60"
+                className="h-full"
+                style={{
+                  background: `linear-gradient(to right, ${currentColor}, ${currentColor}99)`,
+                }}
                 initial={{ width: 0 }}
                 animate={{
                   width: lang.level.includes('精通')

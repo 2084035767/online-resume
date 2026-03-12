@@ -1,3 +1,4 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { PersonalInfoProps } from '@/type'
 import { fadeInUp } from '@/utils/animations'
 import {
@@ -8,55 +9,141 @@ import {
 } from '@icons-pack/react-simple-icons'
 import { motion } from 'framer-motion'
 import { Calendar, Mail, MapPin, Phone } from 'lucide-react'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
   const [showQRCode, setShowQRCode] = useState<string | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+  const { currentColor } = useTheme()
+  const { t } = useTranslation()
+
+  // 检测是否为移动设备
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // 处理二维码显示（移动端点击，桌面端悬停）
+  const handleQRCodeEnter = (qrCode: string) => {
+    setShowQRCode(qrCode)
+  }
+
+  const handleQRCodeLeave = () => {
+    setShowQRCode(null)
+  }
+
+  const toggleQRCode = (qrCode: string) => {
+    setShowQRCode(showQRCode === qrCode ? null : qrCode)
+  }
 
   return (
     <motion.section className="space-y-6" variants={fadeInUp}>
-      <div className="flex items-start justify-between gap-12">
-        {/* 左侧信息 */}
-        <div className="flex-1 space-y-6">
+      {/* 响应式布局：移动端垂直排列，桌面端水平排列 */}
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+        {/* 头像 - 移动端在上，桌面端在右 */}
+        <div className="relative flex-shrink-0 order-1 md:order-2">
+          <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 relative group">
+            {/* 柔和的光晕效果 */}
+            <div
+              className="absolute inset-0 rounded-full blur-2xl scale-110 group-hover:scale-125 transition-transform duration-500"
+              style={{
+                background: `linear-gradient(to right, ${currentColor}4D, transparent)`,
+              }}
+            />
+            <div
+              className="absolute inset-0 rounded-full blur-xl scale-105 group-hover:scale-120 transition-transform duration-700"
+              style={{
+                background: `linear-gradient(to bottom right, ${currentColor}33, transparent, transparent)`,
+              }}
+            />
+
+            {/* 头像图片 */}
+            <div
+              className="relative z-10 w-full h-full rounded-full p-1 backdrop-blur-sm"
+              style={{
+                background: `linear-gradient(to bottom right, ${currentColor}, ${currentColor}80, transparent)`,
+              }}
+            >
+              <img
+                src={personalInfo.avatar}
+                alt="Avatar"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+
+            {/* 光晕边框效果 */}
+            <div
+              className="absolute inset-0 rounded-full scale-110 group-hover:scale-125 transition-transform duration-500"
+              style={{ border: `1px solid ${currentColor}4D` }}
+            />
+            <div
+              className="absolute inset-0 rounded-full scale-125 group-hover:scale-150 transition-transform duration-700"
+              style={{ border: `1px solid ${currentColor}33` }}
+            />
+            <div
+              className="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-1000"
+              style={{ border: `1px solid ${currentColor}1A` }}
+            />
+
+            {/* 微妙的环形光效 */}
+            <div
+              className="absolute inset-0 rounded-full rotate-45 scale-[1.15] group-hover:scale-[1.3] transition-transform duration-700"
+              style={{
+                background: `linear-gradient(to right, ${currentColor}0D, transparent)`,
+              }}
+            />
+          </div>
+        </div>
+
+        {/* 信息区域 - 移动端在下，桌面端在左 */}
+        <div className="flex-1 space-y-4 md:space-y-6 order-2 md:order-1 text-center md:text-left">
           {/* 名字和职位 */}
           <div>
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               {personalInfo.name}
             </h1>
-            <p className="text-2xl mt-2 text-[#42B883] font-medium">
+            <p
+              className="text-xl sm:text-2xl mt-2 font-medium"
+              style={{ color: currentColor }}
+            >
               {personalInfo.title}
             </p>
           </div>
 
           {/* 基本信息 */}
-          <div className="flex flex-wrap gap-4 text-gray-300">
+          <div className="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4 text-gray-300 text-sm sm:text-base">
             <span className="flex items-center gap-1.5">
-              <Mail className="w-4 h-4 text-[#42B883]" />
+              <Mail className="w-4 h-4" style={{ color: currentColor }} />
               {personalInfo.email}
             </span>
             <span className="flex items-center gap-1.5">
-              <Phone className="w-4 h-4 text-[#42B883]" />
+              <Phone className="w-4 h-4" style={{ color: currentColor }} />
               {personalInfo.phone}
             </span>
             <span className="flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-[#42B883]" />
+              <MapPin className="w-4 h-4" style={{ color: currentColor }} />
               {personalInfo.location}
             </span>
             <span className="flex items-center gap-1.5">
-              <Calendar className="w-4 h-4 text-[#42B883]" />
+              <Calendar className="w-4 h-4" style={{ color: currentColor }} />
               {personalInfo.experience}
             </span>
           </div>
 
           {/* 社交链接 */}
-          <div className="flex gap-4">
+          <div className="flex flex-wrap justify-center md:justify-start gap-2 md:gap-4">
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+              className="flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm md:text-base min-h-[44px]"
             >
-              <SiGithub className="w-5 h-5" />
+              <SiGithub className="w-4 h-4 md:w-5 md:h-5" />
               <span>GitHub</span>
             </a>
 
@@ -65,9 +152,9 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
                 href={personalInfo.gitee}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                className="flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm md:text-base min-h-[44px]"
               >
-                <SiGitee className="w-5 h-5" />
+                <SiGitee className="w-4 h-4 md:w-5 md:h-5" />
                 <span>Gitee</span>
               </a>
             )}
@@ -76,22 +163,27 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
               <div className="relative">
                 <button
                   onMouseEnter={() =>
-                    personalInfo.qqQrCode &&
-                    setShowQRCode(personalInfo.qqQrCode)
+                    !isMobile && personalInfo.qqQrCode && handleQRCodeEnter(personalInfo.qqQrCode)
                   }
-                  onMouseLeave={() => setShowQRCode(null)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                  onMouseLeave={() => !isMobile && handleQRCodeLeave()}
+                  onClick={() => personalInfo.qqQrCode && toggleQRCode(personalInfo.qqQrCode)}
+                  className="flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm md:text-base min-h-[44px]"
                 >
-                  <SiQq className="w-5 h-5" />
-                  <span>QQ</span>
+                  <SiQq className="w-4 h-4 md:w-5 md:h-5" />
+                  <span>{t('personal.qq')}</span>
                 </button>
                 {showQRCode === personalInfo.qqQrCode && (
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-lg z-50 w-36 h-36">
+                  <div 
+                    className="fixed md:absolute bottom-auto md:bottom-full left-1/2 -translate-x-1/2 md:mb-2 bg-white p-2 rounded-lg shadow-lg z-50 w-36 h-36 cursor-pointer"
+                    onClick={handleQRCodeLeave}
+                    style={{ top: '50%', transform: 'translate(-50%, -50%)' }}
+                  >
                     <img
                       src={personalInfo.qqQrCode}
                       alt="QQ二维码"
                       className="w-full h-full object-contain"
                     />
+                    <p className="text-xs text-gray-500 text-center mt-1 md:hidden">点击关闭</p>
                   </div>
                 )}
               </div>
@@ -101,22 +193,27 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
               <div className="relative">
                 <button
                   onMouseEnter={() =>
-                    personalInfo.wechatQrCode &&
-                    setShowQRCode(personalInfo.wechatQrCode)
+                    !isMobile && personalInfo.wechatQrCode && handleQRCodeEnter(personalInfo.wechatQrCode)
                   }
-                  onMouseLeave={() => setShowQRCode(null)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                  onMouseLeave={() => !isMobile && handleQRCodeLeave()}
+                  onClick={() => personalInfo.wechatQrCode && toggleQRCode(personalInfo.wechatQrCode)}
+                  className="flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm md:text-base min-h-[44px]"
                 >
-                  <SiWechat className="w-5 h-5" />
-                  <span>WeChat</span>
+                  <SiWechat className="w-4 h-4 md:w-5 md:h-5" />
+                  <span>{t('personal.wechat')}</span>
                 </button>
                 {showQRCode === personalInfo.wechatQrCode && (
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-lg z-50 w-36 h-36">
+                  <div 
+                    className="fixed md:absolute bottom-auto md:bottom-full left-1/2 -translate-x-1/2 md:mb-2 bg-white p-2 rounded-lg shadow-lg z-50 w-36 h-36 cursor-pointer"
+                    onClick={handleQRCodeLeave}
+                    style={{ top: '50%', transform: 'translate(-50%, -50%)' }}
+                  >
                     <img
                       src={personalInfo.wechatQrCode}
                       alt="微信二维码"
                       className="w-full h-full object-contain"
                     />
+                    <p className="text-xs text-gray-500 text-center mt-1 md:hidden">点击关闭</p>
                   </div>
                 )}
               </div>
@@ -124,37 +221,16 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
           </div>
 
           {/* 个人介绍 */}
-          <div className="space-y-3">
-            <h2 className="text-xl font-semibold text-[#42B883]">个人简介</h2>
-            <p className="text-gray-300 leading-relaxed">
+          <div className="space-y-2 md:space-y-3">
+            <h2
+              className="text-lg md:text-xl font-semibold"
+              style={{ color: currentColor }}
+            >
+              {t('personal.aboutMe')}
+            </h2>
+            <p className="text-gray-300 leading-relaxed text-sm md:text-base">
               {personalInfo.introduction}
             </p>
-          </div>
-        </div>
-
-        {/* 右侧头像 */}
-        <div className="relative flex-shrink-0">
-          <div className="w-48 h-48 relative group">
-            {/* 柔和的光晕效果 */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#42B883]/30 to-transparent blur-2xl scale-110 group-hover:scale-125 transition-transform duration-500" />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#42B883]/20 via-transparent to-transparent blur-xl scale-105 group-hover:scale-120 transition-transform duration-700" />
-
-            {/* 头像图片 */}
-            <div className="relative z-10 w-full h-full rounded-full p-1 bg-gradient-to-br from-[#42B883] via-[#42B883]/50 to-transparent backdrop-blur-sm">
-              <img
-                src={personalInfo.avatar}
-                alt="头像"
-                className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-
-            {/* 光晕边框效果 */}
-            <div className="absolute inset-0 rounded-full border border-[#42B883]/30 scale-110 group-hover:scale-125 transition-transform duration-500" />
-            <div className="absolute inset-0 rounded-full border border-[#42B883]/20 scale-125 group-hover:scale-150 transition-transform duration-700" />
-            <div className="absolute inset-0 rounded-full border border-[#42B883]/10 scale-150 group-hover:scale-[1.75] transition-transform duration-1000" />
-
-            {/* 微妙的环形光效 */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#42B883]/5 to-transparent rotate-45 scale-[1.15] group-hover:scale-[1.3] transition-transform duration-700" />
           </div>
         </div>
       </div>

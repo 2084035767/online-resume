@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+    <meta name="description" content="个人在线简历 - 展示技能、项目经验和工作经历" />
+    <meta name="theme-color" content="#42B883" />
     <title>个人展示网页</title>
+    
+    <!-- PWA 配置 -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="在线简历" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="在线简历" />
+    
+    <!-- PWA 图标 -->
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png" />
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="/images/avatar.jpg" as="image" type="image/jpeg" />
+    
+    <!-- 启动画面（iOS） -->
+    <link rel="apple-touch-startup-image" href="/icons/icon-512x512.png" />
   </head>
 
   <body>

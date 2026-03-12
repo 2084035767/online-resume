@@ -1,13 +1,18 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { fadeInUp } from '@/utils/animations'
 import { motion } from 'framer-motion'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { SkillsProps } from '@/type'
 
 const Skills: FC<SkillsProps> = ({ skills }) => {
+  const { currentColor } = useTheme()
+  const { t } = useTranslation()
+
   return (
     <motion.section className="space-y-4" variants={fadeInUp}>
-      <h2 className="text-2xl font-bold">技能清单</h2>
+      <h2 className="text-2xl font-bold">{t('sections.skills')}</h2>
       <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {Object.entries(skills).map(([category, items], index) => (
           <motion.div
@@ -21,7 +26,10 @@ const Skills: FC<SkillsProps> = ({ skills }) => {
               borderColor: 'rgba(255, 255, 255, 0.2)',
             }}
           >
-            <h3 className="text-[#42B883] mb-3 capitalize font-medium">
+            <h3
+              className="mb-3 capitalize font-medium"
+              style={{ color: currentColor }}
+            >
               {category}
             </h3>
             <ul className="space-y-2">
@@ -30,7 +38,10 @@ const Skills: FC<SkillsProps> = ({ skills }) => {
                   key={item}
                   className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#42B883]"></span>
+                  <span
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{ backgroundColor: currentColor }}
+                  ></span>
                   <span>{item}</span>
                 </li>
               ))}

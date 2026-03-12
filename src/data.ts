@@ -12,27 +12,37 @@ import {
 } from '@/type'
 import { BookOpen, Camera, Code2, Dumbbell, Music, Plane } from 'lucide-react'
 
+// 技能数据（无需翻译）
 export const skills: SkillsData = {
-  前端开发: [
+  'frontend': [
     'React',
-
     'Vue',
     'TypeScript',
     'Next.js',
-    // ... 其他技能
+    'TailwindCSS',
+    'Vite',
   ],
-  后端开发: [
+  'backend': [
     'Node.js',
     'Express',
     'MongoDB',
-    // ... 其他技能
+    'PostgreSQL',
+    'Redis',
   ],
-  // ... 其他类别
+  'tools': [
+    'Git',
+    'Docker',
+    'CI/CD',
+    'Linux',
+    'Webpack',
+  ],
 }
+
+// GitHub 项目数据（无需翻译）
 export const githubProjects: GithubProject[] = [
   {
     name: 'react-data-visualization',
-    description: '基于 React 的数据可视化组件库，支持多种图表类型和自定义主题',
+    description: 'i18n',
     stars: 128,
     forks: 45,
     language: 'TypeScript',
@@ -42,7 +52,7 @@ export const githubProjects: GithubProject[] = [
   },
   {
     name: 'vue3-admin-template',
-    description: '企业级中后台管理系统模板，包含权限管理、动态路由等功能',
+    description: 'i18n',
     stars: 89,
     forks: 34,
     language: 'Vue',
@@ -52,7 +62,7 @@ export const githubProjects: GithubProject[] = [
   },
   {
     name: 'node-cms-server',
-    description: '基于 Node.js 的内容管理系统后端，提供 RESTful API',
+    description: 'i18n',
     stars: 67,
     forks: 23,
     language: 'JavaScript',
@@ -61,6 +71,211 @@ export const githubProjects: GithubProject[] = [
     lastUpdate: '2024-03-01',
   },
 ]
+
+// 项目技术栈数据（无需翻译）
+const projectsTechStack = [
+  ['React', 'Next.js', 'TailwindCSS', 'TypeScript', 'Prisma'],
+]
+
+// 时间线项目标签数据（无需翻译）
+const timelineTags = [
+  ['React', 'TypeScript', 'Ant Design', 'Micro Frontend'],
+  ['Vue3', 'Vite', 'ECharts', 'WebSocket'],
+  ['React Native', 'TypeScript', 'GraphQL'],
+]
+
+// 工作技术栈数据（无需翻译）
+const experienceTech = [
+  ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
+  ['Vue.js', 'JavaScript', 'Less', 'Element UI'],
+]
+
+// 兴趣图标颜色数据（无需翻译）
+const interestColors = [
+  'text-blue-400',
+  'text-purple-400',
+  'text-yellow-400',
+  'text-red-400',
+  'text-green-400',
+  'text-indigo-400',
+]
+
+// 兴趣图标数据（无需翻译）
+const interestIcons = [Code2, Camera, BookOpen, Dumbbell, Music, Plane]
+
+// 证书图片数据（无需翻译）
+const certificateImages = [
+  'https://images.unsplash.com/photo-1496469888073-80de7e952517?w=500',
+  'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500',
+  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500',
+  'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500',
+]
+
+// 证书链接数据（无需翻译）
+const certificateLinks = [
+  'https://example.com/cert1',
+  'https://example.com/cert2',
+  null,
+  'https://example.com/cert3',
+]
+
+// 语言证书数据（无需翻译）
+const languageCertificates = [
+  ['托福 iBT 95分', '剑桥商务英语高级证书'],
+  ['JLPT N2'],
+  ['普通话水平测试一级甲等'],
+  [],
+]
+
+// 个人信息基础数据（无需翻译）
+const personalInfoBase = {
+  email: '2087525252@qq.com',
+  phone: '13800138000',
+  location: '成都',
+  github: 'https://github.com/yourusername',
+  gitee: 'https://gitee.com/yourusername',
+  qq: '123456789',
+  wechat: 'your_wechat_id',
+  avatar: '/images/avatar.jpg',
+  qqQrCode: '/images/qq-qrcode.webp',
+  wechatQrCode: '/images/wechat-qrcode.webp',
+}
+
+// 导出函数，根据翻译函数获取数据
+export const getPersonalInfo = (t: (key: string) => string): PersonalInfo => ({
+  ...personalInfoBase,
+  name: t('personal.name'),
+  title: t('personal.title'),
+  experience: '3+ years',
+  introduction: t('personal.introduction'),
+})
+
+export const getEducation = (t: (key: string) => string): Education[] => [
+  {
+    school: t('education.school'),
+    degree: t('education.degree'),
+    period: t('education.period'),
+    details: t('education.details', { returnObjects: true }) as string[],
+  },
+]
+
+export const getProjects = (t: (key: string) => string): Project[] => {
+  const projectList = t('projects.list', { returnObjects: true }) as Array<{
+    title: string
+    description: string
+    highlights: string[]
+  }>
+  return projectList.map((project, index) => ({
+    title: project.title,
+    description: project.description,
+    techStack: projectsTechStack[index] || [],
+    highlights: project.highlights,
+    link: 'https://your-blog.com',
+  }))
+}
+
+export const getTimelineProjects = (t: (key: string) => string): TimelineProject[] => {
+  const timelineList = t('timeline.projects', { returnObjects: true }) as Array<{
+    title: string
+    date: string
+    description: string
+    tags: string[]
+    status: string
+    link?: string
+  }>
+  return timelineList.map((project, index) => ({
+    title: project.title,
+    date: project.date,
+    description: project.description,
+    tags: timelineTags[index] || [],
+    status: project.status as 'ongoing' | 'completed' | 'planned',
+    link: index < 2 ? 'https://github.com/your-project' : undefined,
+  }))
+}
+
+export const getExperiences = (t: (key: string) => string): Experience[] => {
+  const expList = t('experience.list', { returnObjects: true }) as Array<{
+    company: string
+    position: string
+    period: string
+    achievements: string[]
+  }>
+  return expList.map((exp, index) => ({
+    company: exp.company,
+    position: exp.position,
+    period: exp.period,
+    achievements: exp.achievements,
+    technologies: experienceTech[index] || [],
+  }))
+}
+
+export const getInterests = (t: (key: string) => string): Interest[] => {
+  const interestList = t('interests.list', { returnObjects: true }) as Array<{
+    title: string
+    description: string
+  }>
+  return interestList.map((interest, index) => ({
+    title: interest.title,
+    description: interest.description,
+    icon: interestIcons[index] || Code2,
+    color: interestColors[index] || 'text-blue-400',
+  }))
+}
+
+export const getCertificates = (t: (key: string) => string): Certificate[] => {
+  const certList = t('certificates.list', { returnObjects: true }) as Array<{
+    title: string
+    issuer: string
+    date: string
+    description: string
+  }>
+  return certList.map((cert, index) => ({
+    title: cert.title,
+    issuer: cert.issuer,
+    date: cert.date,
+    description: cert.description,
+    image: certificateImages[index] || '',
+    link: certificateLinks[index] || undefined,
+  }))
+}
+
+export const getLanguages = (t: (key: string) => string): Language[] => {
+  const langList = t('languages.list', { returnObjects: true }) as Array<{
+    name: string
+    level: string
+    score?: string
+    description: string
+    certificates?: string[]
+  }>
+  return langList.map((lang, index) => ({
+    name: lang.name,
+    level: lang.level,
+    score: lang.score,
+    description: lang.description,
+    certificates: languageCertificates[index] || [],
+  }))
+}
+
+// 为 GitHub 项目描述添加翻译
+export const getGithubProjects = (t: (key: string) => string): GithubProject[] => {
+  const descriptions = t('github.projects', { returnObjects: true }) as Array<{
+    name: string
+    description: string
+  }>
+  return githubProjects.map((project, index) => ({
+    ...project,
+    description: descriptions[index]?.description || project.description,
+  }))
+}
+
+// 兼容旧版本的默认导出（使用中文）
+export const personalInfo: PersonalInfo = {
+  ...personalInfoBase,
+  name: '张三',
+  title: '高级前端工程师',
+  experience: '3年工作经验',
+  introduction: '热衷于前端技术，擅长 React 和 TypeScript，对性能优化和工程化有深入研究。具有良好的团队协作能力和技术攻关能力，曾主导多个大型项目的开发。',
+}
 
 export const education: Education[] = [
   {
@@ -89,24 +304,6 @@ export const projects: Project[] = [
     link: 'https://your-blog.com',
   },
 ]
-
-export const personalInfo: PersonalInfo = {
-  name: '张三',
-  title: '高级前端工程师',
-  email: '2087525252@qq.com',
-  phone: '13800138000',
-  location: '成都',
-  experience: '3年工作经验',
-  github: 'https://github.com/yourusername',
-  introduction:
-    '热衷于前端技术，擅长 React 和 TypeScript，对性能优化和工程化有深入研究。具有良好的团队协作能力和技术攻关能力，曾主导多个大型项目的开发。',
-  avatar: '/images/avatar.jpg',
-  gitee: 'https://gitee.com/yourusername',
-  qq: '123456789',
-  wechat: 'your_wechat_id',
-  qqQrCode: '/images/qq-qrcode.png',
-  wechatQrCode: '/images/wechat-qrcode.png',
-}
 
 export const experiences: Experience[] = [
   {
@@ -138,28 +335,25 @@ export const timelineProjects: TimelineProject[] = [
   {
     title: '企业级中后台管理系统',
     date: '2023.06 - 至今',
-    description:
-      '基于 React + TypeScript 的现代化中后台解决方案，包含完整的权限管理、数据可视化、表单设计器等功能。',
+    description: '基于 React + TypeScript 的现代化中后台解决方案，包含完整的权限管理、数据可视化、表单设计器等功能。',
     tags: ['React', 'TypeScript', 'Ant Design', '微前端'],
-    status: 'ongoing' as const,
+    status: 'ongoing',
     link: 'https://github.com/your-project',
   },
   {
     title: '电商数据分析平台',
     date: '2023.01 - 2023.05',
-    description:
-      '整合多个数据源，提供实时数据分析和可视化功能，帮助商家做出更好的经营决策。',
+    description: '整合多个数据源，提供实时数据分析和可视化功能，帮助商家做出更好的经营决策。',
     tags: ['Vue3', 'Vite', 'ECharts', 'WebSocket'],
-    status: 'completed' as const,
+    status: 'completed',
     link: 'https://github.com/your-project',
   },
   {
     title: '跨平台移动应用',
     date: '2024.01 - 计划中',
-    description:
-      '计划开发一个支持 iOS 和 Android 的移动应用，提供离线优先的数据同步功能。',
+    description: '计划开发一个支持 iOS 和 Android 的移动应用，提供离线优先的数据同步功能。',
     tags: ['React Native', 'TypeScript', 'GraphQL'],
-    status: 'planned' as const,
+    status: 'planned',
   },
 ]
 
@@ -241,8 +435,7 @@ export const languages: Language[] = [
     name: '英语',
     level: '熟练',
     score: 'CET-6 580',
-    description:
-      '能流畅阅读英文技术文档，参与英文技术讨论，撰写技术文档。日常交流无障碍。',
+    description: '能流畅阅读英文技术文档，参与英文技术讨论，撰写技术文档。日常交流无障碍。',
     certificates: ['托福 iBT 95分', '剑桥商务英语高级证书'],
   },
   {

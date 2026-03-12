@@ -14,6 +14,12 @@ const importInterests = () => import('@/components/Interests/Interests')
 const importCertificates = () =>
   import('@/components/Certificates/Certificates')
 const importLanguages = () => import('@/components/Languages/Languages')
+const importThemeToggle = () => import('@/components/ThemeToggle/ThemeToggle')
+const importTypewriter = () => import('@/components/Typewriter/Typewriter')
+const importScrollProgress = () =>
+  import('@/components/ScrollProgress/ScrollProgress')
+const importLanguageSwitch = () =>
+  import('@/components/LanguageSwitch/LanguageSwitch')
 // 懒加载组件
 const PersonalInfo = lazy(importPersonalInfo)
 const Skills = lazy(importSkills)
@@ -25,8 +31,16 @@ const ProjectTimeline = lazy(importProjectTimeline)
 const Interests = lazy(importInterests)
 const Certificates = lazy(importCertificates)
 const Languages = lazy(importLanguages)
+const ThemeToggle = lazy(importThemeToggle)
+const Typewriter = lazy(importTypewriter)
+const ScrollProgress = lazy(importScrollProgress)
+const LanguageSwitch = lazy(importLanguageSwitch)
 
 export {
+  ThemeToggle,
+  Typewriter,
+  ScrollProgress,
+  LanguageSwitch,
   Certificates,
   Education,
   Experience,
@@ -37,4 +51,14 @@ export {
   Projects,
   ProjectTimeline,
   Skills,
+  importCertificates,
+  importEducation,
+  importExperience,
+  importGithubProjects,
+  importInterests,
+  importLanguages,
+  importPersonalInfo,
+  importProjects,
+  importProjectTimeline,
+  importSkills,
 }

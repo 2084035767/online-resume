@@ -1,12 +1,17 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { ExperienceProps } from '@/type'
 import { fadeInUp } from '@/utils/animations'
 import { motion } from 'framer-motion'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const Experience: FC<ExperienceProps> = ({ experience }) => {
+  const { currentColor } = useTheme()
+  const { t } = useTranslation()
+
   return (
     <motion.section variants={fadeInUp} className="space-y-6">
-      <h2 className="text-2xl font-bold">工作经验</h2>
+      <h2 className="text-2xl font-bold">{t('sections.experience')}</h2>
       {experience.map((item, index) => (
         <motion.div
           key={index}
@@ -19,7 +24,10 @@ const Experience: FC<ExperienceProps> = ({ experience }) => {
           <div className="space-y-2">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="text-xl font-semibold text-[#42B883]">
+                <h3
+                  className="text-xl font-semibold"
+                  style={{ color: currentColor }}
+                >
                   {item.company}
                 </h3>
                 <p className="text-lg text-gray-300">{item.position}</p>
@@ -37,7 +45,11 @@ const Experience: FC<ExperienceProps> = ({ experience }) => {
                 {item.technologies.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-2 py-1 text-sm bg-[#42B883]/20 text-[#42B883] rounded"
+                    className="px-2 py-1 text-sm rounded"
+                    style={{
+                      backgroundColor: `${currentColor}30`,
+                      color: currentColor,
+                    }}
                   >
                     {tech}
                   </span>

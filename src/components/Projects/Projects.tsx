@@ -1,12 +1,18 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { ProjectProps } from '@/type'
 import { fadeInUp } from '@/utils/animations'
 import { cn } from '@/utils/cn'
 import { motion } from 'framer-motion'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+
 const Projects: FC<ProjectProps> = ({ projects }) => {
+  const { currentColor } = useTheme()
+  const { t } = useTranslation()
+
   return (
     <motion.section className="space-y-6" variants={fadeInUp}>
-      <h2 className="text-2xl font-bold">项目经验</h2>
+      <h2 className="text-2xl font-bold">{t('sections.projects')}</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, index) => (
@@ -48,7 +54,11 @@ const Projects: FC<ProjectProps> = ({ projects }) => {
               {project.techStack.map(tech => (
                 <span
                   key={tech}
-                  className="px-2 py-1 text-sm bg-[#42B883]/20 text-[#42B883] rounded"
+                  className="px-2 py-1 text-sm rounded"
+                  style={{
+                    backgroundColor: `${currentColor}30`,
+                    color: currentColor,
+                  }}
                 >
                   {tech}
                 </span>
@@ -61,9 +71,10 @@ const Projects: FC<ProjectProps> = ({ projects }) => {
             </ul>
             <a
               href={project.link}
-              className="text-[#42B883] hover:text-blue-300 inline-block"
+              className="inline-block transition-colors hover:opacity-80"
+              style={{ color: currentColor }}
             >
-              查看项目 →
+              {t('projects.viewProject')} →
             </a>
           </motion.div>
         ))}
