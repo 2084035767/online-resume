@@ -28,11 +28,15 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
 
   // 处理二维码显示（移动端点击，桌面端悬停）
   const handleQRCodeEnter = (qrCode: string) => {
-    setShowQRCode(qrCode)
+    if (!isMobile && qrCode) {
+      setShowQRCode(qrCode)
+    }
   }
 
   const handleQRCodeLeave = () => {
-    setShowQRCode(null)
+    if (!isMobile) {
+      setShowQRCode(null)
+    }
   }
 
   const toggleQRCode = (qrCode: string) => {
@@ -160,12 +164,12 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
             )}
 
             {personalInfo.qq && (
-              <div className="relative">
+              <div 
+                className="relative"
+                onMouseEnter={() => personalInfo.qqQrCode && handleQRCodeEnter(personalInfo.qqQrCode)}
+                onMouseLeave={handleQRCodeLeave}
+              >
                 <button
-                  onMouseEnter={() =>
-                    !isMobile && personalInfo.qqQrCode && handleQRCodeEnter(personalInfo.qqQrCode)
-                  }
-                  onMouseLeave={() => !isMobile && handleQRCodeLeave()}
                   onClick={() => personalInfo.qqQrCode && toggleQRCode(personalInfo.qqQrCode)}
                   className="flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm md:text-base min-h-[44px]"
                 >
@@ -174,14 +178,17 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
                 </button>
                 {showQRCode === personalInfo.qqQrCode && (
                   <div 
-                    className="fixed md:absolute bottom-auto md:bottom-full left-1/2 -translate-x-1/2 md:mb-2 bg-white p-2 rounded-lg shadow-lg z-50 w-36 h-36 cursor-pointer"
-                    onClick={handleQRCodeLeave}
-                    style={{ top: '50%', transform: 'translate(-50%, -50%)' }}
+                    className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-lg z-50 w-36 h-36 cursor-pointer transition-opacity duration-200 ${isMobile ? 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleQRCodeLeave();
+                    }}
                   >
                     <img
                       src={personalInfo.qqQrCode}
                       alt="QQ二维码"
                       className="w-full h-full object-contain"
+                      loading="lazy"
                     />
                     <p className="text-xs text-gray-500 text-center mt-1 md:hidden">点击关闭</p>
                   </div>
@@ -190,12 +197,12 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
             )}
 
             {personalInfo.wechat && (
-              <div className="relative">
+              <div 
+                className="relative"
+                onMouseEnter={() => personalInfo.wechatQrCode && handleQRCodeEnter(personalInfo.wechatQrCode)}
+                onMouseLeave={handleQRCodeLeave}
+              >
                 <button
-                  onMouseEnter={() =>
-                    !isMobile && personalInfo.wechatQrCode && handleQRCodeEnter(personalInfo.wechatQrCode)
-                  }
-                  onMouseLeave={() => !isMobile && handleQRCodeLeave()}
                   onClick={() => personalInfo.wechatQrCode && toggleQRCode(personalInfo.wechatQrCode)}
                   className="flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm md:text-base min-h-[44px]"
                 >
@@ -204,14 +211,17 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ personalInfo }) => {
                 </button>
                 {showQRCode === personalInfo.wechatQrCode && (
                   <div 
-                    className="fixed md:absolute bottom-auto md:bottom-full left-1/2 -translate-x-1/2 md:mb-2 bg-white p-2 rounded-lg shadow-lg z-50 w-36 h-36 cursor-pointer"
-                    onClick={handleQRCodeLeave}
-                    style={{ top: '50%', transform: 'translate(-50%, -50%)' }}
+                    className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-lg z-50 w-36 h-36 cursor-pointer transition-opacity duration-200 ${isMobile ? 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleQRCodeLeave();
+                    }}
                   >
                     <img
                       src={personalInfo.wechatQrCode}
                       alt="微信二维码"
                       className="w-full h-full object-contain"
+                      loading="lazy"
                     />
                     <p className="text-xs text-gray-500 text-center mt-1 md:hidden">点击关闭</p>
                   </div>
